@@ -1,0 +1,20 @@
+{
+	"name": "DaoFramework/DaoFramework Demo",
+  "description": "A Simple PHP Framework based on Composer.",
+  "keywords": ["simple", "framework"],
+  "license": "MIT",
+
+	"require":{
+		"DaoFramework/framework": "dev",
+		"monolog/monolog":"1.0.*"
+	},
+	"config": {
+    "secure-http": false
+	},
+	"repositories": {
+		"packagist": {
+			"type": "composer",
+			"url": "http://packagist.phpcomposer.com"
+		}
+	}
+}

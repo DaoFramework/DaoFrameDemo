@@ -1,0 +1,54 @@
+<?php
+/***********Setter注入写法*************/
+interface EmailSenderInterface
+{
+	public function send();
+}
+/**
+* GoogleEmailSender
+*/
+class GoogleSender implements EmailSenderInterface
+{
+	public function send(){
+		echo 'Google Send Success In Constructor<br/>';
+	}
+}
+/**
+* YahooEmailSender
+*/
+class YahooSender
+{
+	public function send(){
+		echo 'Yahoo Send Success In Constructor<br/>';
+	}
+}
+/**
+* CommentClass
+*/
+class Comment
+{
+	public $sender;
+	function __construct(){}
+	public function setSender($sender){
+		$this->sender = $sender;
+	}
+	function comment(){
+		$this->sender->send();
+	}
+}
+
+//GoogleSender
+$googleSender = new GoogleSender();
+//YahooSender
+$yahooSender = new YahooSender();
+//构造函数注入@googleSender
+$comment = new Comment();
+$comment->sender = $googleSender;
+$comment->comment();
+//构造函数注入@yahooSender
+$comment = new Comment();
+$comment->setSender($yahooSender);
+$comment->comment();
+
+
+?>
