@@ -182,4 +182,12 @@ class Psr4AutoloaderClass
         }
         return false;
     }
+
+    /**
+     * Uninstalls this class loader from the SPL autoloader stack.
+     */
+    public function unregister()
+    {
+        spl_autoload_unregister(array($this, 'loadClass'));
+    }
 }

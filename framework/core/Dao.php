@@ -4,19 +4,19 @@ namespace Dao\Core;
 use Dao\Core\Route;
 
 /**
-* Dao Core
-*/
-class Dao
+ * DaoFramework Core class
+ */
+class Dao extends Init
 {
-
-	function __construct()
-	{
-		# code...
-	}
-
-	public static function Run(){
+	/**
+	 * Run
+	 *
+	 * @param array $config config array
+	 * @return null return
+	 */
+	public static function Run($config){
+		(new Parent)->initializa($config);
 		Route::monitor();
 	}
-
 
 }

@@ -1,0 +1,229 @@
+<?php
+namespace Dao\Core\Database;
+
+use Dao\Core\Error;
+/**
+ * DaoFramework Pdo Database Base Class
+ * @authors Zhang Daomin (Beyondcommunistparty@gmail.com)
+ * @date    2016-03-21 04:13:32
+ * @version $Id$
+ */
+/**
+ * 此数据库操作类暂未实现读写分离，分库等操作；后期会逐渐增加
+ */
+class PdoFactory
+{
+	private static $driver = 'mysql';
+	private static $choose = 'local';
+	private static $read = [];
+	private static $write = [];
+	private static $database = '';
+	private static $charset = 'utf8';
+	private static $collation = 'utf8_unicode_ci';
+	private static $connect = null;
+  private $table = '';
+  private $params = [];
+  private $parameter = [];
+
+  function __construct()
+  {
+  	echo 'Pdo-';
+  	self::init();
+  }
+
+  private function init()
+  {
+  	//var_dump($this->dao);
+  	self::$driver = $this->dao->config['db']['driver'];
+  	self::$choose = $this->dao->config['db']['choose'];
+  	self::$database = $this->dao->config['db']['database'];
+  	self::$read = $this->dao->config['db'][self::$choose]['read'][0];
+  	self::$write = $this->dao->config['db'][self::$choose]['write'][0];
+
+		self::initConnect();
+
+  }
+
+  /**
+   * 初始化数据库连接 暂未对多数据库做处理
+   */
+  private function initConnect()
+  {
+  	if (self::$connect['read'] && self::$connect['write']) {
+  		return true;
+  	}
+
+  	try {
+		  self::$connect['read'] = new \PDO('mysql:'
+		  		.self::$driver.'='.self::$read['host'].';dbname='.self::$database,
+		  		self::$read['username'], self::$read['password']);
+
+		  self::$connect['write'] = new \PDO('mysql:'
+		  		.self::$driver.'='.self::$write['host'].';dbname='.self::$database,
+		  		self::$write['username'], self::$write['password']);
+
+		  //var_dump(self::$connect);
+		} catch (PDOException $e) {
+		  print "Error!: " . $e->getMessage() . "<br/>";
+		  die();
+		}
+  }
+
+  /**
+   * 获取数据库连接信息
+   * @param string $rw 获取读写标示read/write
+   * @param string $lp 获取本地标示local/prodi
+   * @return array 配置信息
+   */
+  private function getConfig($rw='read',$lp='local')
+  {
+
+  }
+
+  /**
+   * 获取连接
+   */
+  private function getConnect()
+  {
+
+  }
+
+  /**
+   * 新建连接
+   */
+  private function newConnect()
+  {
+
+  }
+
+  /**
+   * 设置Pdo连接属性
+   */
+  private function setAttribute()
+  {
+
+  }
+
+  /**
+   * 查询
+   */
+  public function query()
+  {
+  	echo 'query';
+  	return $this;
+  }
+
+  /**
+   * 插入
+   */
+  public function insert()
+  {
+
+  }
+
+  /**
+   * 更新
+   * @param string $table 表名
+   * @param array $params 更新的数据数组 ['col'=>'data'] 可绑定数据['col'=>':col']
+   *
+   */
+  public function update($table=null,$params=null)
+  {
+  	echo 'update->';
+    echo $table;
+    var_dump($params);
+  	return $this;
+  }
+  /**
+   * 删除
+   * @param string $table 表名
+   */
+  public function delete($table=null)
+  {
+    echo 'delete->',$table;
+    return $this;
+  }
+
+  /**
+   * 参数绑定
+   * @param array $parameter 参数绑定数组 [':col'=>'data']
+   */
+  public function bind($parameter=null)
+  {
+    echo 'bind->';
+    var_dump($parameter);
+    return $this;
+  }
+
+  /**
+   * 条件
+   * @param array $params 参数
+   */
+  public function where($params=null)
+  {
+    echo 'where->';
+    var_dump($params);
+    return $this;
+  }
+
+  /**
+   * 影响条数范围
+   * @param int $start 起始
+   * @param int $end 终止
+   */
+  public function limit($start=1,$end=1)
+  {
+    echo 'limit',$start,'-',$end;
+    return $this;
+  }
+
+  /**
+   * 排序
+   * @param string $orderby 排序方式
+   */
+  public function order($orderby=null)
+  {
+    echo 'orderby->',$orderby;
+    return $this;
+  }
+
+  /**
+   * 执行
+   */
+  public function exec()
+  {
+    echo 'exec->';
+    return $this;
+  }
+
+  /**
+   * 数组化
+   */
+  public function asArray()
+  {
+
+  }
+
+  /**
+   * 取第一个
+   */
+  public function one()
+  {
+
+  }
+
+
+
+
+  /**
+   * 删除连接
+   */
+  public function delConnect()
+  {
+
+  }
+
+
+
+}
+

@@ -1,0 +1,31 @@
+<?php
+/**
+ * Index Controller
+ * @authors Zhang Daomin (Beyondcommunistparty@gmail.com)
+ * @date    2016-03-18 17:07:18
+ * @version $Id$
+ */
+namespace App\Controllers;
+
+use Dao\Core\Dao;
+use Dao\Core\Controller;
+
+class Index extends Controller {
+
+    public function index()
+    {
+    	echo 'index';
+    	$dddd = Dao::$app->request()->get('ddd','dd','ddddd');
+    	Dao::$app->db()
+    		->update('table',['col'=>':col'])
+    		->bind([':col'=>'data'])
+    		->where()
+    		->limit()
+    		->order()
+    		->exec();
+    	var_dump($dddd);
+
+    	$this->render('index/index',['test'=>'dddddddddd']);
+    }
+}
+

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>test</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<link href="" rel="stylesheet">
+	</head>
+
+	<body>
+		<div>
+			<?=require VIEWS_PATH."/layout/".'top.php';?>
+			<div>
+	Main Content
+	<?=$test?>
+	<form method="delete">
+		<input name='dd' value="11"></input>
+		<input name='ddd' value="11"></input>
+		<input type="submit">dddddd</input>
+	</form>
+</div>
+
+			<?=require VIEWS_PATH."/layout/".'footer.php';?>
+		</div>
+	</body>
+</html>

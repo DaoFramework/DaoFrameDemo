@@ -14,5 +14,4 @@ $loader->addNamespace('App', dirname(__DIR__).'/application');
 
 
 
-use Dao\Core\Dao;
-Dao::Run();
+

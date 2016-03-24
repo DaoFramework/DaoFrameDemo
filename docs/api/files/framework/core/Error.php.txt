@@ -1,0 +1,33 @@
+<?php
+namespace Dao\Core;
+/**
+ * Error Class
+ * @authors Zhang Daomin (Beyondcommunistparty@gmail.com)
+ * @date    2016-03-20 14:45:33
+ * @version $Id$
+ */
+
+/**
+ * Error Base
+ */
+class Error
+{
+	/**
+	 * Error Echo From debug_backtrace
+	 * @return null
+	 */
+	public static function echo()
+	{
+		$debug = debug_backtrace();
+		echo '<b style="color:red">Customize Error: ',implode('|', $debug[0]['args']).'</b><br>';
+		echo '<i style="color:red">',$debug[1]['line'],'line: </i>',$debug[1]['file'].'<br>';
+		die;
+	}
+
+	public static function log()
+	{
+
+	}
+
+}
+
