@@ -41,7 +41,7 @@ class Index extends Controller {
 }
 ```
 
->获取$config中变量的值可以这样写 `Dao::$app*(->config['name']`
+>获取$config中变量的值可以这样写 `Dao::$app->config['name']`
 
 ##Database
 数据库操作暂时没有ORM映射功能，支持链式操作，暂不支持直接SQL查
@@ -59,7 +59,7 @@ $where = [
     'like' => ['name',':title']
 ];
 ```
-支持各种无聊写法
+支持各种无聊写法,并不完善
 ```
 $data = Dao::$app->db()
         ->select('*')
