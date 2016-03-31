@@ -67,10 +67,14 @@ class View extends Init
 
 	protected function updateTempFile()
 	{
-		$fileContent = File::getContent($this->viewFile);
-		$mainContent = File::getContent($this->layoutFile);
-		$mainContent = str_ireplace('<?=$content?>',$fileContent,$mainContent);
-		$mainContent = str_ireplace('<?=require ','<?=require VIEWS_PATH."/layout/".',$mainContent);
+		$mainContent = File::getContent($this->viewFile);
+		if ($this->layoutFile) {
+			$layoutContent = File::getContent($this->layoutFile);
+			$layoutContent = str_ireplace('<?=$content?>',$mainContent,$layoutContent);
+			$layoutContent = str_ireplace('<?=require ','<?php require VIEWS_PATH."/layout/".',$layoutContent);
+			$mainContent = $layoutContent;
+			unset($layoutContent);
+		}
 
 		File::updateFileContent($this->tempFile,$mainContent);
 	}

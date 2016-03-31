@@ -1,5 +1,7 @@
 <?php
 namespace Dao\Core;
+
+use Dao\Core\Error;
 /**
  * Dao\Core\File
  * @authors Zhang Daomin (Beyondcommunistparty@gmail.com)
@@ -21,6 +23,7 @@ class File
 		if (file_exists($file)) {
 			return file_get_contents($file);
 		}
+		Error::msg('File is not fount! '.$file);
 		return false;
 	}
 

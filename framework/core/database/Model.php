@@ -12,7 +12,6 @@ class Model extends PdoFactory
 
   function __construct()
   {
-  	echo 'Model-';
   	Parent::__construct();
   }
 }

@@ -19,7 +19,6 @@ class Db extends Model
 	 */
   function __construct($dao)
   {
-  	echo 'db-';
   	$this->dao = $dao;
   	Parent::__construct();
   }

@@ -2,27 +2,54 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>My First Framework</title>
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<link href="" rel="stylesheet">
+
+		<!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
-		<div>
-			<?=require VIEWS_PATH."/layout/".'top.php';?>
-			<div>
-	Main Content
-	<?=$test?>
+		<div class="container-fluid">
+			<?php require VIEWS_PATH."/layout/".'top.php';?>
+			<div class="row">
 	<form method="delete">
-		<input name='dd' value="11"></input>
-		<input name='ddd' value="11"></input>
-		<input type="submit">dddddd</input>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label>email</label>
+			<input type="email" class="form-control"></input>
+		</div>
+		<div class="form-group">
+			<label>Test</label>
+			<input name='dd' value="11" class="form-control"></input>
+		</div>
+		<div class="form-group">
+			<label>Test</label>
+			<input name='ddd' value="11" class="form-control"></input>
+		</div>
+		<div class="form-group">
+			<input type="submit">dddddd</input>
+		</div>
+	</div>
 	</form>
 </div>
 
-			<?=require VIEWS_PATH."/layout/".'footer.php';?>
+			<?php require VIEWS_PATH."/layout/".'footer.php';?>
 		</div>
 	</body>
 </html>

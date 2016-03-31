@@ -1,15 +1,16 @@
 <?php
+/**
+ * DaoFramework Pdo Database Base Class
+ *
+ * @authors Zhang Daomin (Beyondcommunistparty@gmail.com)
+ * @date    2016-03-21 04:13:32
+ * @version $Id$
+ */
 namespace Dao\Core\Database;
 
 use Dao\Core\Error;
 use Dao\Core\Common\DaoArray;
 
-/**
- * DaoFramework Pdo Database Base Class
- * @authors Zhang Daomin (Beyondcommunistparty@gmail.com)
- * @date    2016-03-21 04:13:32
- * @version $Id$
- */
 /**
  * 此数据库操作类暂未实现读写分离，分库等操作；后期会逐渐增加
  */
@@ -37,7 +38,6 @@ class PdoFactory
 
   function __construct()
   {
-  	echo 'Pdo-';
   	self::init();
   }
 
@@ -74,6 +74,7 @@ class PdoFactory
 		  //var_dump(self::$connect);
       self::$connect['read']->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
       self::$connect['write']->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+      //设置数据库编码
 
 		} catch (PDOException $e) {
 		  Error::msg($e->getMessage());
@@ -143,6 +144,7 @@ class PdoFactory
 
   /**
    * 插入
+   *
    * @param string $table 表名
    * @param array $params 插入的数据数组 ['col'=>'data'] 可绑定数据['col'=>':col']
    */
@@ -159,6 +161,7 @@ class PdoFactory
 
   /**
    * 更新
+   *
    * @param string $table 表名
    * @param array $params 更新的数据数组 ['col'=>'data'] 可绑定数据['col'=>':col']
    *
@@ -175,6 +178,7 @@ class PdoFactory
   }
   /**
    * 删除
+   *
    * @param string $table 表名
    */
   public function delete($table=null)
@@ -186,6 +190,7 @@ class PdoFactory
 
   /**
    * 参数绑定
+   *
    * @param array $parameter 参数绑定数组 [':col'=>'data']
    */
   public function bind($parameter=[])
@@ -196,6 +201,7 @@ class PdoFactory
 
   /**
    * 条件
+   *
    * ===========================================================================
    * [
    *   and => [
@@ -223,6 +229,7 @@ class PdoFactory
    * ===========================================================================
    *
    * @param array||string $params 参数
+   *
    */
   public function where($params=null)
   {
@@ -233,6 +240,7 @@ class PdoFactory
 
   /**
    * 影响条数范围
+   *
    * @param int $start 起始
    * @param int $end 终止
    */
@@ -244,6 +252,7 @@ class PdoFactory
 
   /**
    * 排序
+   *
    * @param string $orderby 排序方式
    */
   public function order($orderby=null)
@@ -254,6 +263,7 @@ class PdoFactory
 
   /**
    * 执行
+   *
    */
   public function exec()
   {
@@ -269,6 +279,7 @@ class PdoFactory
 
   /**
    * 数组化
+   *
    */
   public function asArray()
   {
@@ -278,6 +289,7 @@ class PdoFactory
 
   /**
    * 取第一个
+   *
    */
   public function one()
   {
@@ -285,10 +297,37 @@ class PdoFactory
     return $this->fetch;
   }
 
+  /**
+   * 获取最后插入ID
+   *
+   */
+  public function id()
+  {
+    if (self::$connect['read']->lastInsertId()) {
+      return self::$connect['read']->lastInsertId();
+    }
+    return 0;
+  }
+
+  /**
+   * 获取影响记录条数
+   *
+   */
+  public function rowCount()
+  {
+    if ($this->handle->rowCount()) {
+      return $this->handle->rowCount();
+    } else {
+      return 0;
+    }
+  }
+
+
 
 
   /**
    * 删除连接
+   *
    */
   public function delConnect()
   {
@@ -297,6 +336,8 @@ class PdoFactory
 
   /**
    * Build Where
+   *
+   * @param array|string $params 参数
    */
   public static function buildWhere($params)
   {
@@ -309,6 +350,14 @@ class PdoFactory
     }
   }
 
+  /**
+   * 构建元素为Array的where语句
+   *
+   * @param array $array where构建数组
+   * @param string $upkey array 键值
+   *
+   * @return string
+   */
   public static function buildWhereByArray($array,$upkey=null)
   {
     $where = '';

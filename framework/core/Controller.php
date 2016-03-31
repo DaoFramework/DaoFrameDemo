@@ -13,10 +13,16 @@ namespace Dao\Core;
 class Controller extends Init
 {
 	public static $view = null;
+	public $layout = 'main';
 
 	public function __construct()
 	{
 		self::$view = new View();
+		if ($this->layout) {
+			self::$view->layout = $this->layout;
+		} else {
+			self::$view->layout = '';
+		}
 	}
 
 	/**

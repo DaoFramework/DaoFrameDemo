@@ -3,7 +3,7 @@ namespace App\View;
 
 use Dao\Core\Dao as Dao;
 ?>
-<div>
+<div class="row">
 <?php echo Dao::$app->config['name']?>
 	top
 </div>
