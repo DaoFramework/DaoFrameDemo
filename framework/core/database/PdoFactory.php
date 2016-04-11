@@ -160,6 +160,33 @@ class PdoFactory
   }
 
   /**
+   * 批量插入
+   *
+   * @param string $table 表名
+   * @param array $keys 数据栏位数组
+   * @param array $params 插入的数据数组 []['col'=>'data'] 可绑定数据['col'=>':col']
+   */
+  public function insertArray($table=null,$keys,$params=null)
+  {
+    !$table && Error::msg('Table name is empty string');
+    !$params && Error::msg('Params is empty array');
+
+    $this->sql = ' INSERT INTO `'.self::$prefix.$table.'` (`'.implode('`,`', $keys).'`) VALUES';
+
+    $values = '';
+    foreach ($params as $key => $value) {
+      if (is_array($values)) {
+        $values .= ($values?',':'').'("'.implode('","',array_values($value)).'")';
+      }else{
+        $values .= ($values?',':'').'("'.$value.'")';
+      }
+    }
+
+    $this->sql .= $values;
+    return $this;
+  }
+
+  /**
    * 更新
    *
    * @param string $table 表名

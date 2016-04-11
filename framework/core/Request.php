@@ -36,6 +36,7 @@ class Request
 		}else if (1 < func_num_args()) {
 			return array_intersect_key($this->get,array_flip(func_get_args()));
 		}
+
 		return $this->get;
 	}
 

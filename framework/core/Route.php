@@ -63,4 +63,16 @@ class Route
 			call_user_func(self::$error_callback);
 		}
 	}
+
+	public static function redirect($url,$params=null)
+	{
+		$param = [];
+		foreach ($params as $key => $value) {
+			$param[] = $key.'='.$value;
+		}
+		$url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'.$url.'?'.implode('&', $param);
+
+		exit(header("Location: ".$url));
+	}
+
 }
