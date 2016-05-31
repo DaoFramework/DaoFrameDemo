@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>My First Framework</title>
-		<meta name="description" content="">
-		<meta name="keywords" content="">
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>My First Framework</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="/assets/i/favicon.png">
+  <link rel="stylesheet" href="/assets/css/amazeui.min.css"/>
 
-		<!-- 新 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!--[if lt IE 9]>
+	<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+	<script src="/assets/js/amazeui.ie8polyfill.min.js"></script>
+	<![endif]-->
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<!--[if (gte IE 9)|!(IE)]><!-->
+	<script src="/assets/js/jquery.min.js"></script>
+	<!--<![endif]-->
+	<script src="/assets/js/amazeui.min.js"></script>
+	<link rel="stylesheet" href="/assets/css/app.css"/>
 
-		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-		<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-		<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
-		<div class="container-fluid">
-			<?=require 'top.php';?>
-			<?=$content?>
-			<?=require 'footer.php';?>
-		</div>
+		<?=require 'top.php';?>
+		<?=$content?>
+		<?=require 'footer.php';?>
 	</body>
 </html>

@@ -52,4 +52,46 @@ for($i=1;$i<250;$i++){
 
   }
 
+  public function snoopy()
+  {
+  	echo '-------------','<br/>';
+  	$cccc = new HnzzjobSnoopy;
+  	$this->render('hnzzjob/snoopy');
+  }
+
+  public function ajaxsnoopy()
+  {
+  	$url = Dao::$app->request()->post('snoopyurl');
+  	$page = Dao::$app->request()->post('startpage');
+
+  	$snoopy = new Snoopy;
+		$resultLinks = $snoopy->fetchlinks($url.'?page='.$page);
+		$results = $resultLinks->results;
+
+		array_walk($results,function(&$v,$k,$p){
+			if ($r=strchr($v, 'rcid=')) {
+				$v = $p.$r;
+			}else{
+				$v=null;
+			}
+		},$this->baseReplace);
+
+		$nonull = array_unique($results);
+		unset($nonull[0]);
+		foreach ($nonull as $key => $value) {
+			Dao::$app->db()->insert('snoopyUrl',['url'=>$value])->exec()->id();
+		}
+
+		echo $page+1;
+  }
+
+  public function ajaxsnoopyContent()
+  {
+		$snoopy = new Snoopy;
+		//&sti_StiWebViewer1_export=SaveHtml
+		//http://www.hnzzjob.com/preview.aspx?t=p&rcid=000000170645
+		$result = $snoopy->fetch('http://www.hnzzjob.com/preview.aspx?t=p&rcid=000000170645&sti_StiWebViewer1_export=SaveHtml');
+		var_export($result);
+  }
+
 }

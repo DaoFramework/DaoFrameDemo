@@ -14,7 +14,7 @@ use Dao\Core\Controller;
 class Index extends Controller
 {
 
-  public function index()
+  public function Index()
   {
   	$get = Dao::$app->request()->get('ddd','dd','ddddd');
   	$where = [

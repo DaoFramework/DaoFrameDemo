@@ -16,14 +16,14 @@ use Dao\Core\Common\DaoArray;
  */
 class PdoFactory
 {
-	private static $driver = 'mysql';
-	private static $choose = 'local';
-	private static $read = [];
-	private static $write = [];
-	private static $database = '';
-	private static $charset = 'utf8';
-	private static $collation = 'utf8_unicode_ci';
-	private static $connect = null;
+  private static $driver = 'mysql';
+  private static $choose = 'local';
+  private static $read = [];
+  private static $write = [];
+  private static $database = '';
+  private static $charset = 'utf8';
+  private static $collation = 'utf8_unicode_ci';
+  private static $connect = null;
   private static $prefix = '';
   private static $operators = ['not','and','or','beween','like','>','<','>=','<=','!=','='];
   private static $prep = ['not','and','or'];

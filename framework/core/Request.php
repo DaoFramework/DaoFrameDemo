@@ -105,7 +105,8 @@ class Request
 		//$qs_array = explode('/', $this->query_string);
 		$ru_array = explode('?', $this->request_url);
 		array_shift($ru_array);
-		array_map(function($value){
+
+		$ru_array && array_map(function($value){
 			$vv = explode('=', $value);
 			$this->get[$vv[0]] = isset($vv[1])?$vv[1]:'';
 		}, explode('&', $ru_array[0]));

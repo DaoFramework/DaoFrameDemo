@@ -33,17 +33,17 @@ class Route
 		$matched = [];
 
 		$segments = explode('/',$uri);
-		if (!$segments[0]) {
-			array_shift($segments);
-			// Instanitate controller
-			$contro = ucfirst($segments[0]);
-			$action = ucfirst($segments[1]);
 
-			$contro = '\App\Controllers\\'.$contro;
-			$controller = new $contro;
-		}else{
+		array_shift($segments);
+		// Instanitate controller
+		$contro = ucfirst($segments[0]);
+		$action = isset($segments[1])?ucfirst($segments[1]):'Index';
 
-		}
+		if (!$contro) $contro = 'Index';
+		if (!$action) $contro = 'Index';
+
+		$contro = '\App\Controllers\\'.$contro;
+		$controller = new $contro;
 
 		// Fix multi parameters
 		if (!method_exists($controller, $action)) {
