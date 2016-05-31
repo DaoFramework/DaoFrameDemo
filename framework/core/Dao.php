@@ -1,0 +1,22 @@
+<?php
+namespace Dao\Core;
+
+use Dao\Core\Route;
+
+/**
+ * DaoFramework Core class
+ */
+class Dao extends Init
+{
+	/**
+	 * Run
+	 *
+	 * @param array $config config array
+	 * @return null return
+	 */
+	public static function Run($config){
+		(new Parent)->initializa($config);
+		Route::monitor();
+	}
+
+}

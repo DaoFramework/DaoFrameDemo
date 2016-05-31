@@ -9,3 +9,4 @@ define('TEMP_PATH', APPLICATION_PATH.'/template');
 
 require CONFIG_PATH.'/definition.php';
 require CONFIG_PATH.'/config.php';
+
